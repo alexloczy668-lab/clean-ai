@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Sign up — Clean AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand">
+      <div class="logo">C</div>
+      <div class="name">Clean<span>AI</span></div>
+    </div>
+
+    <!-- STATE 1: signup form -->
+    <section id="formState">
+      <div class="card">
+        <h1>Create your account</h1>
+        <p class="sub">Sign up to get your Clean AI licence key.</p>
+
+        <div class="alert" id="alert"></div>
+
+        <form id="signupForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <div class="input-row">
+              <input type="text" id="name" placeholder="Your name" autocomplete="name" />
+            </div>
+            <div class="field-error" id="nameErr"></div>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <div class="input-row">
+              <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="field-error" id="emailErr"></div>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-row">
+              <input type="password" id="password" placeholder="At least 8 characters" autocomplete="new-password" />
+              <button type="button" class="toggle-pw" aria-label="Toggle password">show</button>
+            </div>
+            <div class="field-error" id="passwordErr"></div>
+          </div>
+          <button type="submit" class="btn primary" id="submitBtn">Create account</button>
+        </form>
+      </div>
+      <p class="below">Already have an account? <a href="login.html">Log in</a></p>
+    </section>
+
+    <!-- STATE 2: signup succeeded — show the licence key + copy -->
+    <section id="keyState" class="hidden">
+      <div class="card">
+        <div class="state-icon">🔑</div>
+        <h1>Welcome to Clean AI</h1>
+        <p class="sub">Here's your licence key. Save it — you'll paste it into the desktop app once to unlock it.</p>
+
+        <div class="alert" id="keyAlert"></div>
+
+        <div class="panel" style="margin-top:16px;">
+          <div class="label">Your licence key</div>
+          <div class="key-row">
+            <span class="key-val" id="keyVal">—</span>
+            <button class="icon-btn" id="copyBtn">copy</button>
+          </div>
+          <p class="hint">You can always find this key later on your account page.</p>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:16px;">
+          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/CleanAI-1.0.0-setup.exe" class="btn primary" style="flex:1;">↓ Download Clean AI</a>
+          <a href="account.html" class="btn" style="flex:1;">Go to account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Clean AI <span class="dot">•</span> your files never leave your machine</footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (async function () {
+      const { sb, $, showAlert, clearAlert, setFieldError, busy, isEmail, wirePwToggles, getOrCreateLicense, friendlyError } = window.CleanAI;
+      wirePwToggles();
+
+      // Already logged in? Skip straight to account.
+      const { data: sessData } = await sb.auth.getSession();
+      if (sessData.session) {
+        window.location.replace("account.html");
+        return;
+      }
+
+      const show = (id) => {
+        ["formState", "keyState"].forEach((s) =>
+          $("#" + s).classList.toggle("hidden", s !== id)
+        );
+      };
+
+      const form = $("#signupForm");
+      const alertEl = $("#alert");
+      const nameEl = $("#name");
+      const emailEl = $("#email");
+      const pwEl = $("#password");
+      const submitBtn = $("#submitBtn");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearAlert(alertEl);
+
+        const name = nameEl.value.trim();
+        const email = emailEl.value.trim();
+        const pw = pwEl.value;
+
+        let ok = true;
+        ok = setFieldError(nameEl, $("#nameErr"), name ? "" : "Please enter your name.") && ok;
+        ok = setFieldError(emailEl, $("#emailErr"), isEmail(email) ? "" : "Enter a valid email address.") && ok;
+        ok = setFieldError(pwEl, $("#passwordErr"), pw.length >= 8 ? "" : "Password must be at least 8 characters.") && ok;
+        if (!ok) return;
+
+        busy(submitBtn, true, "Creating account…");
+        try {
+          const { data, error } = await sb.auth.signUp({
+            email,
+            password: pw,
+            options: { data: { name } }
+          });
+          if (error) throw error;
+
+          // Email confirmation is disabled — signUp returns a live session.
+          if (!data.session) {
+            // Confirmation was left on. Fall back gracefully.
+            showAlert(alertEl, "Account created — please confirm your email, then log in to see your licence key.", "ok");
+            busy(submitBtn, false);
+            return;
+          }
+
+          const lic = await getOrCreateLicense(data.session.user);
+          $("#keyVal").textContent = lic.key;
+          show("keyState");
+        } catch (err) {
+          showAlert(alertEl, friendlyError(err), "error");
+          busy(submitBtn, false);
+        }
+      });
+
+      // Copy key button on the success screen.
+      $("#copyBtn").addEventListener("click", async () => {
+        const key = $("#keyVal").textContent.trim();
+        if (!key || key === "—") return;
+        try {
+          await navigator.clipboard.writeText(key);
+          $("#copyBtn").textContent = "copied";
+          $("#copyBtn").classList.add("copied");
+          setTimeout(() => {
+            $("#copyBtn").textContent = "copy";
+            $("#copyBtn").classList.remove("copied");
+          }, 1600);
+        } catch {
+          showAlert($("#keyAlert"), "Couldn't copy automatically — select and copy the key manually.", "ok");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Reset password — Clean AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand">
+      <div class="logo">C</div>
+      <div class="name">Clean<span>AI</span></div>
+    </div>
+
+    <!-- STATE 1: request a reset link -->
+    <section id="requestState" class="hidden">
+      <div class="card">
+        <h1>Reset your password</h1>
+        <p class="sub">Enter your email and we'll send a secure link to set a new password.</p>
+
+        <div class="alert" id="reqAlert"></div>
+
+        <form id="requestForm" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <div class="input-row">
+              <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="field-error" id="emailErr"></div>
+          </div>
+          <button type="submit" class="btn primary" id="reqBtn">Send reset link</button>
+        </form>
+      </div>
+      <p class="below">Remembered it? <a href="login.html">Back to login</a></p>
+    </section>
+
+    <!-- STATE 1b: link sent -->
+    <section id="sentState" class="hidden">
+      <div class="card centered">
+        <div class="state-icon">✉️</div>
+        <h1>Check your email</h1>
+        <p class="sub">If an account exists for <strong id="sentTo"></strong>, a reset link is on its way. The link opens this page in "set new password" mode.</p>
+        <a href="login.html" class="btn">Back to login</a>
+      </div>
+    </section>
+
+    <!-- STATE 2: set a new password (arrived via recovery link) -->
+    <section id="updateState" class="hidden">
+      <div class="card">
+        <h1>Set a new password</h1>
+        <p class="sub">Choose a new password for your account.</p>
+
+        <div class="alert" id="updAlert"></div>
+
+        <form id="updateForm" novalidate>
+          <div class="field">
+            <label for="newpw">New password</label>
+            <div class="input-row">
+              <input type="password" id="newpw" placeholder="At least 8 characters" autocomplete="new-password" />
+              <button type="button" class="toggle-pw" aria-label="Toggle password">show</button>
+            </div>
+            <div class="field-error" id="newpwErr"></div>
+          </div>
+          <div class="field">
+            <label for="newpw2">Confirm new password</label>
+            <div class="input-row">
+              <input type="password" id="newpw2" placeholder="Re-enter password" autocomplete="new-password" />
+              <button type="button" class="toggle-pw" aria-label="Toggle password">show</button>
+            </div>
+            <div class="field-error" id="newpw2Err"></div>
+          </div>
+          <button type="submit" class="btn primary" id="updBtn">Update password</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- STATE 2b: done -->
+    <section id="updatedState" class="hidden">
+      <div class="card centered">
+        <div class="state-icon">✅</div>
+        <h1>Password updated</h1>
+        <p class="sub">Your password has been changed. You can log in with it now.</p>
+        <a href="login.html" class="btn primary">Go to login</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Clean AI <span class="dot">•</span> your files never leave your machine</footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (async function () {
+      const { sb, $, showAlert, clearAlert, setFieldError, busy, isEmail, wirePwToggles, friendlyError } = window.CleanAI;
+      wirePwToggles();
+
+      const show = (id) => {
+        ["requestState", "sentState", "updateState", "updatedState"].forEach((s) =>
+          $("#" + s).classList.toggle("hidden", s !== id)
+        );
+      };
+
+      // Decide which state to show. A recovery link puts a recovery token in the
+      // URL; supabase-js (detectSessionInUrl) fires PASSWORD_RECOVERY once parsed.
+      let inRecovery = false;
+      sb.auth.onAuthStateChange((event) => {
+        if (event === "PASSWORD_RECOVERY") {
+          inRecovery = true;
+          show("updateState");
+        }
+      });
+
+      // Fallback: detect recovery params directly (hash or query) before the event.
+      const hash = window.location.hash || "";
+      const search = window.location.search || "";
+      if (/type=recovery/.test(hash) || /type=recovery/.test(search) || /code=/.test(search)) {
+        inRecovery = true;
+        show("updateState");
+      }
+
+      // Give supabase a moment to process the URL; if no recovery, show request form.
+      setTimeout(async () => {
+        if (inRecovery) return;
+        const { data } = await sb.auth.getSession();
+        // If a recovery session got established, updateState is already shown.
+        if (!data.session) show("requestState");
+        else if (!inRecovery) show("requestState");
+      }, 350);
+
+      // ---- STATE 1: request reset ----
+      const reqForm = $("#requestForm");
+      const reqAlert = $("#reqAlert");
+      const emailEl = $("#email");
+      const reqBtn = $("#reqBtn");
+
+      reqForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearAlert(reqAlert);
+        const email = emailEl.value.trim();
+        if (!setFieldError(emailEl, $("#emailErr"), isEmail(email) ? "" : "Enter a valid email address.")) return;
+
+        busy(reqBtn, true, "Sending…");
+        try {
+          const { error } = await sb.auth.resetPasswordForEmail(email, {
+            redirectTo: new URL("reset.html", window.location.href).href,
+          });
+          if (error) throw error;
+          $("#sentTo").textContent = email;
+          show("sentState");
+        } catch (err) {
+          showAlert(reqAlert, friendlyError(err), "error");
+          busy(reqBtn, false);
+        }
+      });
+
+      // ---- STATE 2: set new password ----
+      const updForm = $("#updateForm");
+      const updAlert = $("#updAlert");
+      const pwEl = $("#newpw");
+      const pw2El = $("#newpw2");
+      const updBtn = $("#updBtn");
+
+      updForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearAlert(updAlert);
+        const pw = pwEl.value;
+        const pw2 = pw2El.value;
+
+        let ok = true;
+        ok = setFieldError(pwEl, $("#newpwErr"), pw.length >= 8 ? "" : "Password must be at least 8 characters.") && ok;
+        ok = setFieldError(pw2El, $("#newpw2Err"), pw === pw2 ? "" : "Passwords do not match.") && ok;
+        if (!ok) return;
+
+        busy(updBtn, true, "Updating…");
+        try {
+          const { error } = await sb.auth.updateUser({ password: pw });
+          if (error) throw error;
+          await sb.auth.signOut(); // force a fresh login with the new password
+          show("updatedState");
+        } catch (err) {
+          showAlert(updAlert, friendlyError(err), "error");
+          busy(updBtn, false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

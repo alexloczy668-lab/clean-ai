@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Log in — Clean AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand">
+      <div class="logo">C</div>
+      <div class="name">Clean<span>AI</span></div>
+    </div>
+
+    <section>
+      <div class="card">
+        <h1>Log in</h1>
+        <p class="sub">Access your account and licence key.</p>
+
+        <div class="alert" id="alert"></div>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <div class="input-row">
+              <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="field-error" id="emailErr"></div>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-row">
+              <input type="password" id="password" placeholder="Your password" autocomplete="current-password" />
+              <button type="button" class="toggle-pw" aria-label="Toggle password">show</button>
+            </div>
+            <div class="field-error" id="passwordErr"></div>
+          </div>
+          <button type="submit" class="btn primary" id="submitBtn">Log in</button>
+        </form>
+        <p class="hint" style="text-align:center; margin-top:12px;">
+          <a href="reset.html">Forgot password?</a>
+        </p>
+      </div>
+      <p class="below">New here? <a href="signup.html">Create an account</a></p>
+    </section>
+  </main>
+
+  <footer class="foot">Clean AI <span class="dot">•</span> your files never leave your machine</footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (async function () {
+      const { sb, $, showAlert, clearAlert, setFieldError, busy, isEmail, wirePwToggles, friendlyError } = window.CleanAI;
+      wirePwToggles();
+
+      // Already logged in? Go straight to account (or a ?redirect target).
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get("redirect") || "account.html";
+      const { data: sessData } = await sb.auth.getSession();
+      if (sessData.session) {
+        window.location.replace(redirect);
+        return;
+      }
+
+      const form = $("#loginForm");
+      const alertEl = $("#alert");
+      const emailEl = $("#email");
+      const pwEl = $("#password");
+      const submitBtn = $("#submitBtn");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearAlert(alertEl);
+
+        const email = emailEl.value.trim();
+        const pw = pwEl.value;
+        let ok = true;
+        ok = setFieldError(emailEl, $("#emailErr"), isEmail(email) ? "" : "Enter a valid email address.") && ok;
+        ok = setFieldError(pwEl, $("#passwordErr"), pw ? "" : "Enter your password.") && ok;
+        if (!ok) return;
+
+        busy(submitBtn, true, "Logging in…");
+        try {
+          const { error } = await sb.auth.signInWithPassword({ email, password: pw });
+          if (error) throw error;
+          window.location.replace(redirect);
+        } catch (err) {
+          showAlert(alertEl, friendlyError(err), "error");
+          busy(submitBtn, false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
