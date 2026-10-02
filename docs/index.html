@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Clean AI — a private, on-device file organizer for Windows. Nothing ever leaves your PC." />
   <title>Clean AI — private file organizer for Windows</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <meta name="description" content="Sort messy folders, find duplicate files and see what is eating your disk. Runs 100% on your PC: no cloud, no accounts, no telemetry. 7-day free trial." />
+
+  <!-- Social previews (Reddit, X, Discord, Product Hunt) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alexloczy668-lab.github.io/clean-ai/" />
+  <meta property="og:title" content="Clean AI — clean up your PC without uploading a single file" />
+  <meta property="og:description" content="File organizer, duplicate finder and disk dashboard for Windows. 100% local. Every move can be undone." />
+  <meta property="og:image" content="https://alexloczy668-lab.github.io/clean-ai/assets/dashboard.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts are self-hosted: this page makes no third-party requests. -->
+  <link rel="stylesheet" href="fonts.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -21,10 +29,10 @@
         </a>
         <nav class="nav-links">
           <a href="#features">Features</a>
-          <a href="#privacy">Privacy</a>
+          <a href="#safety">Safety</a>
           <a href="#pricing">Pricing</a>
-          <a href="login.html">Log in</a>
-          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="cta">Download</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/latest/download/CleanAI-1.0.0-setup.exe" class="cta">Download</a>
         </nav>
       </div>
     </header>
@@ -32,53 +40,53 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">● 100% on-device</span>
-        <h1>Clean up your PC.<br /><span class="grad">Keep it private.</span></h1>
+        <span class="eyebrow">● 100% on-device · no account needed</span>
+        <h1>Clean up your PC.<br /><span class="grad">Upload nothing.</span></h1>
         <p class="lede">
-          Clean AI sorts your files, hunts down duplicates, and clears out old junk —
-          all locally. No cloud uploads, no accounts required to run it, no snooping.
-          Your files never leave your machine.
+          Clean AI sorts messy folders, finds duplicate files and shows exactly what is
+          eating your disk — without sending a single file name anywhere. And every change
+          it makes has an Undo button.
         </p>
         <div class="hero-actions">
-          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary inline lg">↓ Download for Windows</a>
-          <a href="#features" class="btn inline lg">See how it works</a>
+          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/latest/download/CleanAI-1.0.0-setup.exe" class="btn primary inline lg">↓ Download for Windows</a>
+          <a href="#how" class="btn inline lg">See how it works</a>
         </div>
-        <p class="fineprint">Free until September 2026 · Windows 10 &amp; 11</p>
+        <p class="fineprint">7-day free trial · no card, no sign-up · Windows 10 &amp; 11 · 80 MB</p>
 
-        <!-- Dashboard screenshot -->
         <div class="shot">
           <div class="shot-bar">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             <span class="title">Clean AI — Dashboard</span>
           </div>
           <div class="shot-body">
-            <img src="assets/dashboard.png" alt="Clean AI dashboard" class="shot-img" />
+            <img src="assets/dashboard.png" alt="Clean AI dashboard showing drive usage, reclaimable space, duplicates and junk counts" class="shot-img" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Split preview: scrollable copy + sticky screenshot -->
-    <section class="section split">
-      <div class="container split-grid">
-        <div class="split-copy">
-          <h2>Clean AI — Automated Disk Cleanup</h2>
-          <p>Clean AI is a powerful Windows utility that scans your hard drive and intelligently removes unnecessary files and folders, freeing up valuable disk space.</p>
-          <p>Key features include:</p>
-          <ul>
-            <li>Smart analysis of files by type, age and size</li>
-            <li>Detailed reports of space savings</li>
-            <li>One-click cleanup</li>
-            <li>Automatic scheduled scans</li>
-            <li>100% local — no data leaves your PC</li>
-          </ul>
-          <p>Clean AI makes it easy to reclaim gigabytes of lost space from temporary files, app caches, installers, duplicates and more. Get started now and experience a faster, leaner PC!</p>
+    <!-- Proof strip -->
+    <section class="proof">
+      <div class="container proof-grid">
+        <div><strong>0</strong><span>files uploaded</span></div>
+        <div><strong>0</strong><span>trackers or analytics</span></div>
+        <div><strong>100%</strong><span>of moves undoable</span></div>
+        <div><strong>SHA-256</strong><span>verified duplicates</span></div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head">
+          <h2>Three steps, you stay in control</h2>
+          <p>Nothing moves until you have seen the plan.</p>
         </div>
-        <div class="split-preview">
-          <div class="split-sticky">
-            <img src="assets/dashboard.png" alt="Clean AI app preview" class="split-img" />
-          </div>
-        </div>
+        <ol class="steps how">
+          <li><div><strong>Pick a folder.</strong> Downloads, Desktop, an old backup drive — whatever is a mess.</div></li>
+          <li><div><strong>Review the plan.</strong> Clean AI shows where every file would go. Anything it isn't sure about lands in "Needs your call" instead of being guessed.</div></li>
+          <li><div><strong>Apply — or undo.</strong> Files are filed into Photos, Videos, Documents and more. Changed your mind? One click puts any file back.</div></li>
+        </ol>
       </div>
     </section>
 
@@ -86,46 +94,60 @@
     <section class="section" id="features">
       <div class="container">
         <div class="section-head">
-          <h2>Three tools, one clean drive</h2>
-          <p>Everything runs on your own hardware. Nothing to configure, nothing uploaded.</p>
+          <h2>Everything a tidy drive needs</h2>
+          <p>Six tools in one small app. All of it runs on your own hardware.</p>
         </div>
         <div class="features">
           <div class="feature">
             <div class="f-icon">🗂️</div>
             <h3>Organizer</h3>
-            <p>Automatically sorts loose files into tidy categories — photos, videos, music, documents, installers and more — so your folders stop being a dumping ground.</p>
+            <p>Sorts loose files into Photos, Videos, Music, Documents, Installers and Archives. Review mode by default; auto mode when you trust it.</p>
           </div>
           <div class="feature">
             <div class="f-icon">🔍</div>
             <h3>Duplicates</h3>
-            <p>Finds byte-for-byte duplicate files across your drives and lets you clear the copies safely, reclaiming space without guesswork.</p>
+            <p>Checks size, then a quick hash, then a full SHA-256. Only byte-identical files are reported — even when the names are different.</p>
           </div>
           <div class="feature">
             <div class="f-icon">🧹</div>
             <h3>Old &amp; junk</h3>
-            <p>Surfaces stale downloads, temp files and forgotten clutter you haven't touched in ages — review, then wipe in one pass.</p>
+            <p>Temp files, crash dumps, <code>Thumbs.db</code> and anything untouched for 6+ months. Suggestions only — you choose what goes.</p>
+          </div>
+          <div class="feature">
+            <div class="f-icon">📊</div>
+            <h3>Disk dashboard</h3>
+            <p>Drive usage, a treemap of what is eating space, and your largest folders and files — so you know where the gigabytes went.</p>
+          </div>
+          <div class="feature">
+            <div class="f-icon">↩️</div>
+            <h3>Activity log + Undo</h3>
+            <p>Every move, rename and removal is logged with old path, new path and time. Each row has its own Undo button, even after a restart.</p>
+          </div>
+          <div class="feature">
+            <div class="f-icon">📴</div>
+            <h3>Works offline</h3>
+            <p>No cloud backend, no sign-in to use it. Pull the network cable and Clean AI works exactly the same.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Privacy band -->
-    <section class="privacy" id="privacy">
+    <!-- Safety band -->
+    <section class="privacy" id="safety">
       <div class="container">
         <div class="inner">
           <div class="lock">🔒</div>
           <div>
-            <h2>Nothing ever leaves your PC</h2>
+            <h2>Built so it can't wreck your files</h2>
             <p>
-              Clean AI does all of its scanning, sorting and analysis locally on your computer.
-              Your file names, contents, and folder structure are never sent anywhere — there's
-              no cloud backend to leak, because there is no cloud backend.
+              Cleanup tools are scary because one wrong click deletes something you needed.
+              Clean AI is designed around that fear.
             </p>
             <ul>
-              <li>No file uploads, ever — scanning happens entirely on-device</li>
-              <li>No tracking, no analytics, no telemetry</li>
-              <li>Works fully offline</li>
-              <li>Your account is only used for your licence — not your files</li>
+              <li>Nothing is deleted outright — removed files go to a quarantine folder you empty yourself</li>
+              <li>Moves never overwrite: a clash becomes <code>report (2).pdf</code></li>
+              <li>Windows, Program Files and AppData are never scanned</li>
+              <li>Your file names and contents never leave the PC — there is no server to send them to</li>
             </ul>
           </div>
         </div>
@@ -137,22 +159,55 @@
       <div class="container">
         <div class="section-head">
           <h2>Simple pricing</h2>
-          <p>Free while we're in launch. Fair, flat pricing after — cancel anytime.</p>
+          <p>Try everything free for a week. Keep it for less than a coffee a week.</p>
         </div>
         <div class="price-card">
-          <span class="price-badge">Free until September 2026</span>
+          <span class="price-badge">7-day free trial</span>
           <div class="price-amt">
-            <div class="now">€0</div>
-            <div class="then">then €11 / month</div>
+            <div class="now">€11</div>
+            <div class="then">per month · cancel anytime</div>
           </div>
-          <p class="price-sub">Full access to every feature during the free period.</p>
+          <p class="price-sub">No card to start. The trial runs inside the app.</p>
           <ul class="price-list">
-            <li>Organizer, Duplicates, and Old &amp; junk — all included</li>
-            <li>Unlimited drives and files</li>
-            <li>100% on-device, no cloud</li>
-            <li>Free updates during launch</li>
+            <li>Organizer, Duplicates, Old &amp; junk, Dashboard</li>
+            <li>Unlimited folders, drives and files</li>
+            <li>Activity log with Undo on every change</li>
+            <li>All updates included</li>
           </ul>
-          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary lg">Download free</a>
+          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/latest/download/CleanAI-1.0.0-setup.exe" class="btn primary lg">Start free trial</a>
+          <!-- TODO: point at the Lemon Squeezy checkout URL once the product is live -->
+          <a href="#pricing" class="btn ghost buy-link">Already decided? Buy a licence</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <h2>Questions</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Is it really 100% local?</summary>
+            <p>Yes. Scanning, sorting, hashing and the dashboard all run on your PC. The app's only network request is checking a licence key when you enter one — that sends the key, nothing about your files.</p>
+          </details>
+          <details>
+            <summary>Can it delete something important?</summary>
+            <p>It never deletes outright. "Remove" moves files into a quarantine folder, and every action in the activity log can be undone. System folders are skipped entirely.</p>
+          </details>
+          <details>
+            <summary>What happens when the trial ends?</summary>
+            <p>The app asks for a licence key. Your files stay exactly where Clean AI put them, and nothing is locked or hidden.</p>
+          </details>
+          <details>
+            <summary>Windows says "Windows protected your PC". Is that safe?</summary>
+            <p>That SmartScreen message appears for new apps from small developers that haven't built up download reputation yet. Click <em>More info → Run anyway</em>.</p>
+          </details>
+          <details>
+            <summary>Do I need an account?</summary>
+            <p>No. Download, install, use. A licence key is all you need after the trial.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -162,27 +217,21 @@
     <!-- Final CTA -->
     <section class="cta-band">
       <div class="container">
-        <h2>Ready for a cleaner drive?</h2>
-        <p>Download Clean AI and take back your disk space — privately.</p>
-        <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary lg inline">↓ Download for Windows</a>
+        <h2>Take your disk back — privately.</h2>
+        <p>Free for 7 days. No card, no account, no uploads.</p>
+        <a href="https://github.com/alexloczy668-lab/clean-ai/releases/latest/download/CleanAI-1.0.0-setup.exe" class="btn primary lg inline">↓ Download for Windows</a>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer class="site-foot">
       <div class="container">
         <span>© 2026 Clean AI · your files never leave your machine</span>
         <span class="links">
-          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe">Download</a>
-          <a href="login.html">Log in</a>
-          <a href="signup.html">Sign up</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/latest/download/CleanAI-1.0.0-setup.exe">Download</a>
         </span>
       </div>
     </footer>
   </div>
-
-  <script src="config.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>
