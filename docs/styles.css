@@ -444,3 +444,9 @@ code {
   .acct-actions { grid-template-columns: 1fr; }
   .hero-actions .btn { width: 100%; }
 }
+
+/* ---- free-trial page ---- */
+.keyshow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 16px; margin-bottom: 20px; border: 1px solid var(--accent-line); background: var(--accent-dim); border-radius: var(--radius-sm); }
+.keyshow-label { flex-basis: 100%; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); }
+.keyshow code { flex: 1; min-width: 0; font-family: var(--mono); font-size: 16px; color: var(--accent); user-select: all; word-break: break-word; }
+.steps { margin: 0 0 22px 18px; padding: 0; color: var(--text-dim); font-size: 14px; line-height: 1.7; }

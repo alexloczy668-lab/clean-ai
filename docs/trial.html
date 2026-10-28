@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'self'" />
+  <title>Get free trial — Clean AI</title>
+  <meta name="description" content="Create a free account and get an 11-day Clean AI trial key." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <div class="container">
+        <a href="index.html" class="brand">
+          <img src="assets/icon.png" alt="" />
+          <span class="name">Clean<span>AI</span></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html#pricing" class="hide-sm">Pricing</a>
+          <a href="login.html" class="signin">Licence sign in</a>
+          <a href="#" class="cta" data-link="checkout">Get key</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth">
+      <!-- Step 1: create account / sign in -->
+      <div class="card" id="step-auth">
+        <h1 id="auth-title">Get free trial</h1>
+        <p class="sub" id="auth-sub">Create a free account to get your 11-day trial key. No card needed.</p>
+
+        <div id="alert" class="alert error hidden" role="alert"></div>
+
+        <form id="form" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" class="input" type="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" class="input" type="password" placeholder="At least 6 characters" autocomplete="new-password" required />
+          </div>
+          <button id="submit" class="btn primary block lg" type="submit">Create account</button>
+        </form>
+
+        <p class="below" id="switch-row">Already have an account? <a href="#" id="switch">Sign in</a></p>
+      </div>
+
+      <!-- Step 2: create key -->
+      <div class="card hidden" id="step-key">
+        <h1>You're in</h1>
+        <p class="sub" id="who"></p>
+
+        <div id="before-key">
+          <button id="create" class="btn primary block lg" type="button">Create key</button>
+          <p class="hint">Your key is valid for 11 days from the moment you enter it in the app.</p>
+        </div>
+
+        <div id="after-key" class="hidden">
+          <div class="keyshow">
+            <span class="keyshow-label">Your trial key</span>
+            <code id="trial-key">studenti su pobedili</code>
+            <button id="copy" class="btn" type="button">Copy</button>
+          </div>
+          <ol class="steps">
+            <li>Download and install Clean AI.</li>
+            <li>Paste the key on the first screen (or Settings → Licence).</li>
+            <li>The 11-day countdown starts and you see it in the app.</li>
+          </ol>
+          <a href="#" class="btn primary block lg" data-link="download">↓ Download for Windows</a>
+        </div>
+
+        <p class="below"><a href="#" id="signout">Sign out</a></p>
+      </div>
+    </main>
+
+    <footer class="site-foot">
+      <div class="container">
+        <span>This account lives only in this browser. Nothing is sent to a server.</span>
+        <span class="links"><a href="index.html">Home</a><a href="index.html#faq">FAQ</a></span>
+      </div>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script src="trial.js"></script>
+</body>
+</html>
