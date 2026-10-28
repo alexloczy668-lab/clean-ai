@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.lemonsqueezy.com; img-src 'self' data:; base-uri 'self'; form-action 'self'" />
+  <title>Sign in — Clean AI</title>
+  <meta name="description" content="Sign in with your Clean AI licence key to see your plan, renewal date and billing." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <div class="container">
+        <a href="index.html" class="brand">
+          <img src="assets/icon.png" alt="" />
+          <span class="name">Clean<span>AI</span></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html#pricing" class="hide-sm">Pricing</a>
+          <a href="#" class="cta" data-link="download">Download</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="auth">
+      <div class="card">
+        <h1>Sign in</h1>
+        <p class="sub">Use the licence key from your purchase email.</p>
+
+        <div id="alert" class="alert error hidden" role="alert"></div>
+
+        <form id="form" novalidate>
+          <div class="field">
+            <label for="key">Licence key</label>
+            <input id="key" class="input" type="text" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+                   autocomplete="off" autocapitalize="characters" spellcheck="false" required />
+            <p class="hint">Format: 36 characters with dashes.</p>
+          </div>
+          <label class="check-row">
+            <input id="remember" type="checkbox" checked /> Keep me signed in on this device
+          </label>
+          <button id="submit" class="btn primary block lg" type="submit">Sign in</button>
+        </form>
+
+        <div class="or">or</div>
+
+        <div class="stack">
+          <a href="#" class="btn block" data-link="orders">Lost your key? Get it by email</a>
+          <a href="#" class="btn ghost block" data-link="checkout">Don't have one? Buy a licence — €11/mo</a>
+        </div>
+      </div>
+
+      <p class="below">Just want to try it? <a href="#" data-link="download">Download the free 7-day trial</a></p>
+    </main>
+
+    <footer class="site-foot">
+      <div class="container">
+        <span>Your key is checked with Lemon Squeezy and stored only in this browser.</span>
+        <span class="links"><a href="index.html">Home</a><a href="index.html#faq">FAQ</a></span>
+      </div>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

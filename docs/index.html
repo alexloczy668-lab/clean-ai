@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://api.lemonsqueezy.com; img-src 'self' data:; base-uri 'self'; form-action 'self'" />
   <title>Clean AI — private file organizer for Windows</title>
   <meta name="description" content="Sort messy folders, find duplicate files and see what is eating your disk. Runs 100% on your PC: no cloud, no accounts, no telemetry. 7-day free trial." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
 
   <!-- Social previews (Reddit, X, Discord, Product Hunt) -->
   <meta property="og:type" content="website" />
@@ -20,19 +22,19 @@
 </head>
 <body>
   <div class="site">
-    <!-- Nav -->
     <header class="nav">
       <div class="container">
-        <a href="index.html" class="brand" style="text-decoration:none;">
-          <div class="logo">C</div>
-          <div class="name">Clean<span>AI</span></div>
+        <a href="index.html" class="brand">
+          <img src="assets/icon.png" alt="" />
+          <span class="name">Clean<span>AI</span></span>
         </a>
         <nav class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#safety">Safety</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-          <a href="https://github.com/alexloczy668-lab/clean-ai/ releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="cta">Download</a>
+          <a href="#how" class="hide-sm">How it works</a>
+          <a href="#features" class="hide-sm">Features</a>
+          <a href="#pricing" class="hide-sm">Pricing</a>
+          <a href="#faq" class="hide-sm">FAQ</a>
+          <a href="login.html" class="signin" data-signin>Sign in</a>
+          <a href="#" class="cta" data-link="download">Download</a>
         </nav>
       </div>
     </header>
@@ -40,27 +42,24 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">● 100% on-device · no account needed</span>
+        <span class="eyebrow"><span class="pip"></span>100% on-device · no account needed</span>
         <h1>Clean up your PC.<br /><span class="grad">Upload nothing.</span></h1>
         <p class="lede">
-          Clean AI sorts messy folders, finds duplicate files and shows exactly what is
-          eating your disk — without sending a single file name anywhere. And every change
-          it makes has an Undo button.
+          Clean AI sorts messy folders, finds duplicate files and shows exactly what is eating
+          your disk — without sending a single file name anywhere. Every change it makes has an Undo button.
         </p>
         <div class="hero-actions">
-          <a href="https://github.com/alexloczy668-lab/clean-ai/ releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary inline lg">↓ Download for Windows</a>
-          <a href="#how" class="btn inline lg">See how it works</a>
+          <a href="#" class="btn primary lg" data-link="download">↓ Download for Windows</a>
+          <a href="#how" class="btn lg">See how it works</a>
         </div>
-        <p class="fineprint">7-day free trial · no card, no sign-up · Windows 10 &amp; 11 · 80 MB</p>
+        <p class="fineprint">7-day free trial · no card, no sign-up · Windows 10 &amp; 11 · 77 MB</p>
 
         <div class="shot">
           <div class="shot-bar">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             <span class="title">Clean AI — Dashboard</span>
           </div>
-          <div class="shot-body">
-            <img src="assets/dashboard.png" alt="Clean AI dashboard showing drive usage, reclaimable space, duplicates and junk counts" class="shot-img" />
-          </div>
+          <img src="assets/dashboard.png" alt="Clean AI dashboard showing drive usage, reclaimable space, duplicates and junk counts" />
         </div>
       </div>
     </section>
@@ -79,13 +78,14 @@
     <section class="section" id="how">
       <div class="container">
         <div class="section-head">
-          <h2>Three steps, you stay in control</h2>
+          <div class="kicker">How it works</div>
+          <h2>Three steps. You stay in control.</h2>
           <p>Nothing moves until you have seen the plan.</p>
         </div>
-        <ol class="steps how">
-          <li><div><strong>Pick a folder.</strong> Downloads, Desktop, an old backup drive — whatever is a mess.</div></li>
-          <li><div><strong>Review the plan.</strong> Clean AI shows where every file would go. Anything it isn't sure about lands in "Needs your call" instead of being guessed.</div></li>
-          <li><div><strong>Apply — or undo.</strong> Files are filed into Photos, Videos, Documents and more. Changed your mind? One click puts any file back.</div></li>
+        <ol class="how">
+          <li><strong>Pick a folder</strong>Downloads, Desktop, an old backup drive — whatever is a mess.</li>
+          <li><strong>Review the plan</strong>Clean AI shows where every file would go. Anything it isn't sure about lands in "Needs your call" instead of being guessed.</li>
+          <li><strong>Apply — or undo</strong>Files are filed into Photos, Videos, Documents and more. Changed your mind? One click puts any file back.</li>
         </ol>
       </div>
     </section>
@@ -94,6 +94,7 @@
     <section class="section" id="features">
       <div class="container">
         <div class="section-head">
+          <div class="kicker">Features</div>
           <h2>Everything a tidy drive needs</h2>
           <p>Six tools in one small app. All of it runs on your own hardware.</p>
         </div>
@@ -133,17 +134,14 @@
     </section>
 
     <!-- Safety band -->
-    <section class="privacy" id="safety">
+    <section class="band" id="safety">
       <div class="container">
         <div class="inner">
           <div class="lock">🔒</div>
           <div>
             <h2>Built so it can't wreck your files</h2>
-            <p>
-              Cleanup tools are scary because one wrong click deletes something you needed.
-              Clean AI is designed around that fear.
-            </p>
-            <ul>
+            <p>Cleanup tools are scary because one wrong click deletes something you needed. Clean AI is designed around that fear.</p>
+            <ul class="checks">
               <li>Nothing is deleted outright — removed files go to a quarantine folder you empty yourself</li>
               <li>Moves never overwrite: a clash becomes <code>report (2).pdf</code></li>
               <li>Windows, Program Files and AppData are never scanned</li>
@@ -158,25 +156,37 @@
     <section class="section" id="pricing">
       <div class="container">
         <div class="section-head">
+          <div class="kicker">Pricing</div>
           <h2>Simple pricing</h2>
           <p>Try everything free for a week. Keep it for less than a coffee a week.</p>
         </div>
-        <div class="price-card">
-          <span class="price-badge">7-day free trial</span>
-          <div class="price-amt">
-            <div class="now">€11</div>
-            <div class="then">per month · cancel anytime</div>
+        <div class="pricing">
+          <div class="plan">
+            <span class="tag">Start here</span>
+            <h3>Free trial</h3>
+            <div class="amt">€0 <small>for 7 days</small></div>
+            <p class="sub">No card, no account. The trial runs inside the app.</p>
+            <ul class="checks">
+              <li>Every feature unlocked</li>
+              <li>Unlimited folders and drives</li>
+              <li>Your files stay where Clean AI put them when it ends</li>
+            </ul>
+            <a href="#" class="btn block lg" data-link="download">↓ Download &amp; start trial</a>
           </div>
-          <p class="price-sub">No card to start. The trial runs inside the app.</p>
-          <ul class="price-list">
-            <li>Organizer, Duplicates, Old &amp; junk, Dashboard</li>
-            <li>Unlimited folders, drives and files</li>
-            <li>Activity log with Undo on every change</li>
-            <li>All updates included</li>
-          </ul>
-          <a href="https://github.com/alexloczy668-lab/clean-ai/ releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary lg">Start free trial</a>
-          <!-- Lemon Squeezy checkout (store is still in test mode; the URL changes when the product is copied to live mode) -->
-          <a href="https://clean-ai.lemonsqueezy.com/checkout/buy/e2c3871f-b081-4ba3-a8fc-1213837d8bcc" class="btn ghost buy-link">Already decided? Buy a licence</a>
+          <div class="plan featured">
+            <span class="tag">Licence</span>
+            <h3>Clean AI Monthly</h3>
+            <div class="amt">€11 <small>/ month</small></div>
+            <p class="sub">Cancel anytime from your account.</p>
+            <ul class="checks">
+              <li>Organizer, Duplicates, Old &amp; junk, Dashboard</li>
+              <li>Activity log with Undo on every change</li>
+              <li>All updates included</li>
+              <li>Licence key emailed instantly</li>
+            </ul>
+            <a href="#" class="btn primary block lg" data-link="checkout">Buy a licence</a>
+            <p class="note">Secure checkout by Lemon Squeezy · VAT handled for you</p>
+          </div>
         </div>
       </div>
     </section>
@@ -185,6 +195,7 @@
     <section class="section" id="faq">
       <div class="container">
         <div class="section-head">
+          <div class="kicker">FAQ</div>
           <h2>Questions</h2>
         </div>
         <div class="faq">
@@ -201,25 +212,27 @@
             <p>The app asks for a licence key. Your files stay exactly where Clean AI put them, and nothing is locked or hidden.</p>
           </details>
           <details>
-            <summary>Windows says "Windows protected your PC". Is that safe?</summary>
-            <p>That SmartScreen message appears for new apps from small developers that haven't built up download reputation yet. Click <em>More info → Run anyway</em>.</p>
+            <summary>How do I get my licence key?</summary>
+            <p>After checkout Lemon Squeezy emails it to you straight away. Paste it into the app under Settings → Licence. Lost it? Open <a href="#" data-link="orders">My Orders</a> and sign in with your email.</p>
           </details>
           <details>
-            <summary>Do I need an account?</summary>
-            <p>No. Download, install, use. A licence key is all you need after the trial.</p>
+            <summary>What is the Sign in page for?</summary>
+            <p>Sign in with your licence key to see your plan, renewal date and devices, and to manage billing or cancel. You don't need it to use the app.</p>
+          </details>
+          <details>
+            <summary>Windows says "Windows protected your PC". Is that safe?</summary>
+            <p>That SmartScreen message appears for new apps from small developers that haven't built up download reputation yet. Click <em>More info → Run anyway</em>.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <hr class="divider" />
-
     <!-- Final CTA -->
     <section class="cta-band">
       <div class="container">
-        <h2>Take your disk back — privately.</h2>
+        <h2>Take your disk back — <span class="grad">privately.</span></h2>
         <p>Free for 7 days. No card, no account, no uploads.</p>
-        <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe" class="btn primary lg inline">↓ Download for Windows</a>
+        <a href="#" class="btn primary lg" data-link="download">↓ Download for Windows</a>
       </div>
     </section>
 
@@ -227,11 +240,14 @@
       <div class="container">
         <span>© 2026 Clean AI · your files never leave your machine</span>
         <span class="links">
+          <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
-          <a href="https://github.com/alexloczy668-lab/clean-ai/releases/download/v1.0.0/clean-ai.Setup.1.0.0.exe">Download</a>
+          <a href="login.html">Sign in</a>
+          <a href="#" data-link="download">Download</a>
         </span>
       </div>
     </footer>
   </div>
+  <script src="app.js"></script>
 </body>
 </html>
