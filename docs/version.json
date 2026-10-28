@@ -1,5 +1,5 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "url": "download/CleanAI-Setup.exe",
-  "notes": "Stronger licence protection: keys are checked by our server and tied to your PC. Free trial is one per PC."
+  "notes": "Dashboard now shows which folder is being scanned, next to Select folder."
 }
