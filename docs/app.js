@@ -7,7 +7,9 @@ const CLEAN_AI = {
   checkoutUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/e2c3871f-b081-4ba3-a8fc-1213837d8bcc',
   // Lemon Squeezy's buyer portal: invoices, cancel, update card, lost keys (email magic link).
   ordersUrl: 'https://app.lemonsqueezy.com/my-orders',
-  downloadUrl: 'download/CleanAI-1.0.0-setup.exe',
+  // Fixed name so the link never changes. New release: replace this file,
+  // bump "version" in version.json (the app checks it every 14 days).
+  downloadUrl: 'download/CleanAI-Setup.exe',
   validateUrl: 'https://api.lemonsqueezy.com/v1/licenses/validate',
   storageKey: 'cleanai.licence',
 };
