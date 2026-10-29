@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'" />
+  <title>Privacy policy — Clean AI</title>
+  <meta name="description" content="What Clean AI collects, what stays on your PC, and how to delete your data." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .policy { max-width: 760px; padding-top: 48px; padding-bottom: 72px; }
+    .policy h1 { font-family: var(--display); font-size: 34px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; }
+    .policy .updated { color: var(--text-dim); font-size: 14px; margin-bottom: 32px; }
+    .policy h2 { font-family: var(--display); font-size: 20px; font-weight: 600; margin: 34px 0 10px; }
+    .policy p, .policy li { color: var(--text-dim); line-height: 1.7; font-size: 15px; }
+    .policy p { margin-bottom: 12px; }
+    .policy ul { margin: 0 0 12px 20px; }
+    .policy li { margin-bottom: 6px; }
+    .policy strong { color: var(--text); }
+    .policy a { color: var(--accent); }
+    .policy table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 14px; }
+    .policy th, .policy td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text-dim); }
+    .policy th { color: var(--text); font-weight: 600; }
+    @media (max-width: 600px) { .policy th, .policy td { padding: 8px 6px; } }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="nav">
+      <div class="container">
+        <a href="index.html" class="brand">
+          <img src="assets/icon.png" alt="" />
+          <span class="name">Clean<span>AI</span></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html#faq" class="hide-sm">FAQ</a>
+          <a href="index.html" class="cta">Home</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container policy">
+      <h1>Privacy policy</h1>
+      <p class="updated">Last updated: 29 October 2026 · applies to the Clean AI Windows app (website and Microsoft Store versions) and this website.</p>
+
+      <p>
+        Clean AI is made by Alex (brand NS_website16), based in Serbia. In this policy "we" means the developer of Clean AI.
+        Contact: <a href="mailto:loczyalex2.0@gmail.com">loczyalex2.0@gmail.com</a>.
+      </p>
+
+      <h2>The short version</h2>
+      <ul>
+        <li><strong>Your files never leave your PC.</strong> Scanning, duplicate detection, organizing and clean-up all run locally. File contents, file names and folder paths are never uploaded.</li>
+        <li>The only thing the app sends online is your <strong>licence key</strong> and an <strong>anonymous device ID</strong>, to check that the licence is valid.</li>
+        <li>No ads, no tracking, no analytics, no telemetry.</li>
+      </ul>
+
+      <h2>What we collect and why</h2>
+      <table>
+        <tr><th>Data</th><th>Why</th><th>Where it is stored</th></tr>
+        <tr>
+          <td>Licence key</td>
+          <td>To check that your trial or subscription is valid.</td>
+          <td>On your PC. The licence server forwards it to Lemon Squeezy to check it and stores only a one-way SHA-256 hash of it (Supabase).</td>
+        </tr>
+        <tr>
+          <td>Anonymous device ID — a one-way SHA-256 hash of your Windows machine ID</td>
+          <td>To bind a licence to one PC and to allow one free trial per PC. The hash cannot be turned back into your machine ID and does not identify you.</td>
+          <td>Licence server (Supabase).</td>
+        </tr>
+        <tr>
+          <td>Activation dates (when a key or trial was first used on a device, and when it was last checked)</td>
+          <td>To issue and renew licence tokens.</td>
+          <td>Licence server (Supabase).</td>
+        </tr>
+        <tr>
+          <td>Email address, name, billing details</td>
+          <td>Only if you buy a subscription. Collected by Lemon Squeezy, our payment provider, to process payment and email you your key. We never see your card details.</td>
+          <td>Lemon Squeezy.</td>
+        </tr>
+        <tr>
+          <td>IP address</td>
+          <td>Seen by our hosting providers (Supabase, GitHub Pages) whenever the app or the website connects, as with any internet request. We do not use it to identify you.</td>
+          <td>Provider logs, kept for a short time by those providers.</td>
+        </tr>
+      </table>
+      <p>The Clean AI app itself does not ask for your name or email and has no user accounts. We do not sell, rent or share your data for advertising.</p>
+
+      <h2>What stays on your PC</h2>
+      <p>
+        Everything the app learns about your files stays on your PC: the scan results, file names and paths, sizes, duplicate groups,
+        the activity log (used for undo) and the quarantine folder that holds removed files until you empty it. These are stored in
+        the app's own data folder (the Windows app data folder) and are deleted when you uninstall Clean AI.
+      </p>
+      <p>
+        If you installed the website version, the app also downloads a small public file (<code>version.json</code>) from this website to check
+        for updates. That request carries no key, ID or file information. The Microsoft Store version does not do this; the Store handles updates.
+      </p>
+
+      <h2>Service providers</h2>
+      <ul>
+        <li><strong>Supabase</strong> (licence server and database). Supabase is used to check licences; it is not used to store any of your files or file names.</li>
+        <li><strong>Lemon Squeezy</strong> (payments, merchant of record) — see the <a href="https://www.lemonsqueezy.com/privacy" rel="noopener">Lemon Squeezy privacy policy</a>.</li>
+        <li><strong>GitHub Pages</strong> (hosts this website and the update file).</li>
+        <li><strong>Microsoft</strong>, if you get Clean AI from the Microsoft Store, under Microsoft's own privacy statement.</li>
+      </ul>
+
+      <h2>How long we keep it</h2>
+      <p>
+        Activation records are kept while your licence is active and up to 12 months after it ends, so a renewed licence keeps working.
+        Trial records (only the anonymous device ID and the trial dates) are kept so each PC gets one free trial.
+        You can ask us to delete any of these at any time.
+      </p>
+
+      <h2>Your rights and deleting your data</h2>
+      <p>You can ask us to see, correct or delete the data we hold about you. To delete your account and data:</p>
+      <ul>
+        <li>In the app, open <strong>Settings → Privacy &amp; your data → Request deletion</strong>, or</li>
+        <li>email <a href="mailto:loczyalex2.0@gmail.com?subject=Clean%20AI%20data%20deletion%20request">loczyalex2.0@gmail.com</a> with your licence key or the email you bought it with.</li>
+      </ul>
+      <p>
+        We delete your licence and activation records from the licence server within 30 days and confirm by email.
+        To remove the key from your PC right away, use <strong>Settings → Licence → Delete key</strong>. Uninstalling the app deletes all local app data.
+        Purchase records held by Lemon Squeezy may have to be kept for tax law; you can also contact Lemon Squeezy directly.
+      </p>
+      <p>If you live in the EU/EEA or another region with data-protection law, you can also complain to your local data-protection authority.</p>
+
+      <h2>Security</h2>
+      <p>
+        All connections use HTTPS. Licence tokens are digitally signed so they cannot be forged or moved to another PC.
+        The licence database is not publicly readable; only the licence server can access it.
+      </p>
+
+      <h2>Children</h2>
+      <p>Clean AI is a general utility and is not directed at children. We do not knowingly collect data from children.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, we update this page and the date at the top. Important changes are also mentioned in the app's release notes.</p>
+    </main>
+
+    <footer class="site-foot">
+      <div class="container">
+        <span>© 2026 Clean AI · your files never leave your machine</span>
+        <span class="links"><a href="index.html">Home</a><a href="index.html#faq">FAQ</a><a href="privacy.html">Privacy</a></span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
