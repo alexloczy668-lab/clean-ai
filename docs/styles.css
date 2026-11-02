@@ -278,7 +278,7 @@ code {
 .checks li::before { content: "✓"; color: var(--ok); font-weight: 700; flex: none; }
 
 /* pricing */
-.pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 820px; margin: 0 auto; }
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1080px; margin: 0 auto; }
 .plan {
   background: linear-gradient(180deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border);

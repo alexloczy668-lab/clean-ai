@@ -1,5 +1,5 @@
 {
-  "version": "1.0.3",
+  "version": "1.5.0",
   "url": "download/CleanAI-Setup.exe",
-  "notes": "Dashboard now shows which folder is being scanned, next to Select folder."
+  "notes": "Licence badge now shows trial days, renewal or end date. New quick tour on first start, and a Get API key button next to the key field."
 }

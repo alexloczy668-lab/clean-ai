@@ -5,19 +5,28 @@ const CLEAN_AI = {
   storeId: 479522,
   // Checkout link. When the product is copied to LIVE mode, paste the new link here.
   checkoutUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/e2c3871f-b081-4ba3-a8fc-1213837d8bcc',
+  // Yearly plan (€100 / year) checkout link.
+  // TODO: create the yearly plan in Lemon Squeezy (new variant of "Clean AI", or a new
+  // product), paste its checkout link here, and add its product id to the licence
+  // server's LS_PRODUCT_ID secret if it is a separate product. Until then the Yearly
+  // button falls back to checkoutUrl above (the MONTHLY checkout).
+  checkoutYearlyUrl: '',
   // Lemon Squeezy's buyer portal: invoices, cancel, update card, lost keys (email magic link).
   ordersUrl: 'https://app.lemonsqueezy.com/my-orders',
-  // Fixed name so the link never changes. New release: replace this file,
-  // bump "version" in version.json (the app checks it every 14 days).
-  downloadUrl: 'download/CleanAI-Setup.exe',
+  // Every download button goes to the Microsoft Store listing. The Store delivers
+  // updates too. (download/CleanAI-Setup.exe + version.json stay only so old
+  // website installs can still update themselves.)
+  downloadUrl: 'https://apps.microsoft.com/detail/9pffcdrs64fn?hl=en-US&gl=RS',
   validateUrl: 'https://api.lemonsqueezy.com/v1/licenses/validate',
   storageKey: 'cleanai.licence',
 };
 
-// Fill every <a data-link="checkout|orders|download"> from the config above.
+// Fill every <a data-link="checkout|checkoutYearly|orders|download"> from the config above.
 document.querySelectorAll('[data-link]').forEach((a) => {
-  const url = CLEAN_AI[a.dataset.link + 'Url'];
+  const url = CLEAN_AI[a.dataset.link + 'Url'] || (a.dataset.link === 'checkoutYearly' ? CLEAN_AI.checkoutUrl : '');
   if (url) a.href = url;
+  // The Store opens in a new tab so the trial key / account page stays open.
+  if (a.dataset.link === 'download') { a.target = '_blank'; a.rel = 'noopener'; }
 });
 
 // Nav: show "Account" instead of "Sign in" when a key is saved.
