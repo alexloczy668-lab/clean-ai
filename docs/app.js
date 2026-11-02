@@ -5,12 +5,10 @@ const CLEAN_AI = {
   storeId: 479522,
   // Checkout link. When the product is copied to LIVE mode, paste the new link here.
   checkoutUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/e2c3871f-b081-4ba3-a8fc-1213837d8bcc',
-  // Yearly plan (€100 / year) checkout link.
-  // TODO: create the yearly plan in Lemon Squeezy (new variant of "Clean AI", or a new
-  // product), paste its checkout link here, and add its product id to the licence
-  // server's LS_PRODUCT_ID secret if it is a separate product. Until then the Yearly
-  // button falls back to checkoutUrl above (the MONTHLY checkout).
-  checkoutYearlyUrl: '',
+  // Yearly plan (€100 / year) checkout link. Product id 1494447, accepted by the
+  // licence server (LS_PRODUCT_ID=1376519,1494447). If this is ever emptied, the
+  // Yearly button falls back to checkoutUrl above (the MONTHLY checkout).
+  checkoutYearlyUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/38529515-b2fb-4e0a-9086-9dff94531fd6',
   // Lemon Squeezy's buyer portal: invoices, cancel, update card, lost keys (email magic link).
   ordersUrl: 'https://app.lemonsqueezy.com/my-orders',
   // Every download button goes to the Microsoft Store listing. The Store delivers
