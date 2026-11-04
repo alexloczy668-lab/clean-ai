@@ -461,3 +461,10 @@ code {
 @media (max-width: 860px) { .pricing.two { grid-template-columns: 1fr; } }
 .more-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
 .section-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 46px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+
+/* home: one link card per page */
+a.feature { display: block; color: inherit; }
+a.feature:hover { text-decoration: none; }
+.features.four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1040px) { .features.four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .features.four { grid-template-columns: 1fr; } }
