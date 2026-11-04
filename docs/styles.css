@@ -454,3 +454,10 @@ code {
 .buy-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 @media (max-width: 560px) { .buy-row { grid-template-columns: 1fr; } }
 .steps { margin: 0 0 22px 18px; padding: 0; color: var(--text-dim); font-size: 14px; line-height: 1.7; }
+
+/* multi-page nav: current page */
+.nav-links a.on { color: var(--text); background: var(--surface-2); }
+.pricing.two { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+@media (max-width: 860px) { .pricing.two { grid-template-columns: 1fr; } }
+.more-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+.section-head h1 { font-family: var(--display); font-size: clamp(30px, 5vw, 46px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }

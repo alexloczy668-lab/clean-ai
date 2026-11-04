@@ -25,6 +25,14 @@ document.querySelectorAll('[data-link]').forEach((a) => {
   if (a.dataset.link === 'download') { a.target = '_blank'; a.rel = 'noopener'; }
 });
 
+// The landing page used to hold every section; old links (the app's Renew button
+// opens index.html#pricing) now go to the section's own page.
+(function () {
+  const PAGES = { '#how': 'how-it-works.html', '#features': 'features.html', '#pricing': 'pricing.html', '#faq': 'faq.html' };
+  const onIndex = /\/(index\.html)?$/.test(location.pathname);
+  if (onIndex && PAGES[location.hash]) location.replace(PAGES[location.hash]);
+})();
+
 // The old sign-in / account pages are gone: forget what they saved in this
 // browser (licence key, trial-page accounts with password hashes).
 try {
