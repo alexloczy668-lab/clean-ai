@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.5.1",
   "url": "download/CleanAI-Setup.exe",
-  "notes": "Licence badge now shows trial days, renewal or end date. New quick tour on first start, and a Get API key button next to the key field."
+  "notes": "Key screens updated: get your licence key from the website. Undo now shows restored files in Duplicates and Old and junk without a new scan."
 }
