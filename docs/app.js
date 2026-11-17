@@ -1,16 +1,13 @@
 // Clean AI website — shared config (checkout, orders and download links).
 // Everything that changes when the store goes live is in this one object.
 const CLEAN_AI = {
-  // Lemon Squeezy store "clean-ai" (same id in test and live mode).
-  storeId: 479522,
-  // Checkout link. When the product is copied to LIVE mode, paste the new link here.
-  checkoutUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/e2c3871f-b081-4ba3-a8fc-1213837d8bcc',
-  // Yearly plan (€100 / year) checkout link. Product id 1494447, accepted by the
-  // licence server (LS_PRODUCT_ID=1376519,1494447). If this is ever emptied, the
-  // Yearly button falls back to checkoutUrl above (the MONTHLY checkout).
-  checkoutYearlyUrl: 'https://clean-ai.lemonsqueezy.com/checkout/buy/38529515-b2fb-4e0a-9086-9dff94531fd6',
-  // Lemon Squeezy's buyer portal: invoices, cancel, update card, lost keys (email magic link).
-  ordersUrl: 'https://app.lemonsqueezy.com/my-orders',
+  // Dodo Payments LIVE checkout links (monthly EUR 11, yearly EUR 100).
+  // Product ids go into the licence server secret DODO_PRODUCT_ID.
+  checkoutUrl: 'https://checkout.dodopayments.com/buy/pdt_0Ns8NCt3BR5u9Qw1LdDUq?quantity=1',
+  // If this is ever emptied, the Yearly button falls back to the MONTHLY checkout.
+  checkoutYearlyUrl: 'https://checkout.dodopayments.com/buy/pdt_0Ns8NXZrdEeUrJ2iucq4k?quantity=1',
+  // Dodo customer portal: invoices, cancel, update card, lost keys (email sign-in link).
+  ordersUrl: 'https://customer.dodopayments.com/login/bus_0Ns8INMUb8gxfpaKfghNA',
   // Every download button goes to the Microsoft Store listing. The Store delivers
   // updates too. (download/CleanAI-Setup.exe + version.json stay only so old
   // website installs can still update themselves.)
